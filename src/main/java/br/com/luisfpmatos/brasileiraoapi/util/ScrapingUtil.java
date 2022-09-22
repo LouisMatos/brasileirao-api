@@ -33,6 +33,9 @@ public class ScrapingUtil {
 			LOGGER.info("Titulo da pagina: {}", title);
 
 			StatusPartida statusPartida = obtemStatusPartida(document);
+			LOGGER.info("Status partida: {}", statusPartida);
+			String tempoPartida = obtemTempoPartida(document);
+			LOGGER.info("Tempo partida: {}", tempoPartida);
 		} catch (IOException e) {
 			LOGGER.error("ERRO AO TENTAR CONECTAR NO GOOGLE COM JSOUP -> {}", e.getMessage());
 		}
@@ -55,14 +58,47 @@ public class ScrapingUtil {
 			LOGGER.info(tempoPartida);
 		}
 
-		isTempoPartida = document.select("div[class=imso_mh__ft-mtch imso-medium-font imso_mh__ft-mtchc]").isEmpty();
+		isTempoPartida = document.select("span[class=imso_mh__ft-mtch imso-medium-font imso_mh__ft-mtchc]").isEmpty();
 
 		if (!isTempoPartida) {
 			statusPartida = StatusPartida.PARTIDA_ENCERRADA;
 		}
-		
-		LOGGER.info(statusPartida.toString());
+
 		return statusPartida;
+	}
+
+	public String obtemTempoPartida(Document document) {
+
+		String tempoPartida = null;
+
+		boolean isTempoPartida = document.select("div[class=imso_mh__lv-m-stts-cont]").isEmpty();
+
+		if (!isTempoPartida) {
+			tempoPartida = document.select("div[class=imso_mh__lv-m-stts-cont]").text();
+		}
+
+		isTempoPartida = document.select("span[class=imso_mh__ft-mtch imso-medium-font imso_mh__ft-mtchc]").isEmpty();
+
+		if (!isTempoPartida) {
+			tempoPartida = document.select("span[class=imso_mh__ft-mtch imso-medium-font imso_mh__ft-mtchc]").first()
+					.text();
+
+		}
+
+		return corrigTempoPartida(tempoPartida);
+
+	}
+
+	public String corrigTempoPartida(String tempo) {
+		String tempoPartida = null;
+
+		if (tempo.contains("'")) {
+			tempoPartida = tempo.replace(" ", "").replace("'", " min");
+		} else {
+			tempoPartida = tempo;
+		}
+
+		return tempoPartida;
 	}
 
 }
