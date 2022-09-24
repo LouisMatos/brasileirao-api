@@ -51,7 +51,7 @@ public class EquipeService {
 	public void alterarEquipe(Long id, @Valid EquipeDTO equipeDTO) {
 		boolean exists = equipeRepository.existsById(id);
 		if (!exists) {
-			throw new BadRequestException("Não foi possivel alterar a equipe: ID inexistente;");
+			throw new NotFoundException("Não foi possivel alterar a equipe: ID inexistente;");
 		}
 		Equipe equipe = mapper.map(equipeDTO, Equipe.class);
 		equipe.setId(id);

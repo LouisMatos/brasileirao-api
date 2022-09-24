@@ -81,7 +81,7 @@ public class EquipeController {
 		return ResponseEntity.created(location).body(equipe);
 	}
 	
-	@ApiOperation(value = "Inserir equipe")
+	@ApiOperation(value = "Alterar equipe")
 	@ApiResponses(value = {
 			@ApiResponse(code = 204, message = "no content", response = Equipe.class),
 			@ApiResponse(code = 400, message = "Bad Request", response = StandardError.class),
