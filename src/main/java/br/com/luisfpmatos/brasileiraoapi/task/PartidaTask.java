@@ -35,7 +35,7 @@ public class PartidaTask {
 		inicializaAgendamento("taskPartidaQuintaFeira()");
 	}
 
-	@Scheduled(cron = "0/30 * 16-23 * * SAT", zone = TIME_ZONE)
+	@Scheduled(cron = "0/30 * 12-23 * * SAT", zone = TIME_ZONE)
 	public void taskPartidaSabado() {
 		inicializaAgendamento("taskPartidaSabado()");
 	}
@@ -48,11 +48,12 @@ public class PartidaTask {
 	@Scheduled(cron = "0/30 * 11-13 * * SUN", zone = TIME_ZONE)
 	public void taskPartidaDomingoManha() {
 		inicializaAgendamento("taskPartidaDomingoManha()");
-		scrapingService.verificaPartidaPeriodo();
+		
 	}
 
 	private void inicializaAgendamento(String diaSemana) {
 		gravaLogInfo(String.format("%s: %s", diaSemana, DataUtil.formataDateEmString(new Date(), DD_MM_YYYY_HH_MM_SS)));
+		scrapingService.verificaPartidaPeriodo();
 	}
 
 	private void gravaLogInfo(String mensagem) {

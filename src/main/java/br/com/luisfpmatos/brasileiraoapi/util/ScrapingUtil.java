@@ -27,8 +27,9 @@ public class ScrapingUtil {
 	private static final String DIV_PLACAR_EQUIPE_CASA = "div[class=imso_mh__l-tm-sc imso_mh__scr-it imso-light-font]";
 	private static final String DIV_PLACAR_EQUIPE_VISITANTE = "div[class=imso_mh__r-tm-sc imso_mh__scr-it imso-light-font]";
 
-	private static final String DIV_GOLS_EQUIPE_CASA = "div[class=imso_gs__tgs imso_gs__right-team]";
-	private static final String DIV_GOLS_EQUIPE_VISITANTE = "div[class=imso_gs__tgs imso_gs__left-team]";
+	private static final String DIV_GOLS_EQUIPE_CASA = "div[class=imso_gs__tgs imso_gs__left-team]";
+	private static final String  DIV_GOLS_EQUIPE_VISITANTE= "div[class=imso_gs__tgs imso_gs__right-team]";
+	
 	private static final String ITEM_GOL = "div[class=imso_gs__gs-r]";
 	private static final String DIV_PENALIDADES = "div[class=imso_mh_s__psn-sc]";
 
