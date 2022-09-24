@@ -20,32 +20,32 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(UnathorizedException.class)
-	public ResponseEntity<StandardError> unathorizedException(BadRequestException e, HttpServletRequest request) {
+	public ResponseEntity<StandardError> unathorizedException(UnathorizedException e, HttpServletRequest request) {
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
 				.body(new StandardError(HttpStatus.UNAUTHORIZED, e.getMessage(), request.getRequestURI()));
 	}
 
 	@ExceptionHandler(ForbiddenException.class)
-	public ResponseEntity<StandardError> forbiddenException(BadRequestException e, HttpServletRequest request) {
+	public ResponseEntity<StandardError> forbiddenException(ForbiddenException e, HttpServletRequest request) {
 		return ResponseEntity.status(HttpStatus.FORBIDDEN)
 				.body(new StandardError(HttpStatus.FORBIDDEN, e.getMessage(), request.getRequestURI()));
 	}
 
 	@ExceptionHandler(NotFoundException.class)
-	public ResponseEntity<StandardError> notFoundException(BadRequestException e, HttpServletRequest request) {
+	public ResponseEntity<StandardError> notFoundException(NotFoundException e, HttpServletRequest request) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 				.body(new StandardError(HttpStatus.NOT_FOUND, e.getMessage(), request.getRequestURI()));
 	}
 
 	@ExceptionHandler(InternalServerErrorException.class)
-	public ResponseEntity<StandardError> internalServerErrorException(BadRequestException e,
+	public ResponseEntity<StandardError> internalServerErrorException(InternalServerErrorException e,
 			HttpServletRequest request) {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(new StandardError(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), request.getRequestURI()));
 	}
 
 	@ExceptionHandler(RuntimeException.class)
-	public ResponseEntity<StandardError> runtimeException(BadRequestException e, HttpServletRequest request) {
+	public ResponseEntity<StandardError> runtimeException(RuntimeException e, HttpServletRequest request) {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(new StandardError(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), request.getRequestURI()));
 	}

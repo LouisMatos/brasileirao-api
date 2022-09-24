@@ -1,8 +1,9 @@
 package br.com.luisfpmatos.brasileiraoapi.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
-import antlr.collections.List;
+import br.com.luisfpmatos.brasileiraoapi.entity.Equipe;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,6 @@ public class EquipeResponseDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 2899877737910550611L;
-	private List equipes;
+	private List<Equipe> equipes;
 
 }
